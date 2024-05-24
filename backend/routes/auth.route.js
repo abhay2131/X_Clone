@@ -1,13 +1,22 @@
 import express from "express";
-import { signup, login, logout } from "../controllers/auth.controllers.js";
+import {
+  signup,
+  signin,
+  signout,
+  getUser,
+} from "../controllers/auth.controllers.js";
+
+import { protectRoute } from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
-router.get("/signup", signup);
+router.get("/getUser", protectRoute, getUser);
 
-router.get("/login", login);
+router.post("/signup", signup);
 
-router.get("/logout", logout);
+router.post("/signin", signin);
+
+router.post("/signout", signout);
 
 // router.post("/signup");
 
